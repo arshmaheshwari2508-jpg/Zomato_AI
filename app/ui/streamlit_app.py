@@ -33,6 +33,14 @@ def check_api_status() -> bool:
         return False
 
 
+@st.cache_resource
+def get_repository():
+    """Load and preprocess the dataset once, caching the repository instance."""
+    from app.data.repository import RestaurantRepository
+    return RestaurantRepository.from_cache_or_dataset()
+
+
+@st.cache_data
 def load_dataset_hints(use_api: bool) -> tuple[list[str], list[str], list[str], list[str]]:
     """Load hint options for cities, location_options, cuisines, and budget tiers."""
     if use_api:
@@ -46,10 +54,9 @@ def load_dataset_hints(use_api: bool) -> tuple[list[str], list[str], list[str], 
     
     # Fallback to direct repository loading
     try:
-        from app.data.repository import RestaurantRepository
         from app.domain.filter import FilterService
         
-        repo = RestaurantRepository.from_cache_or_dataset()
+        repo = get_repository()
         filter_service = FilterService(repo)
         hints = filter_service.get_dataset_hints()
         return hints.cities, hints.location_options, hints.cuisines, hints.budget_tiers
@@ -73,10 +80,9 @@ def get_recommendations(preferences: dict, use_api: bool) -> dict:
     try:
         from app.domain.models import UserPreferences, UserBudget
         from app.domain.orchestrator import RecommendationOrchestrator
-        from app.data.repository import RestaurantRepository
         from app.domain.filter import FilterService
         
-        repo = RestaurantRepository.from_cache_or_dataset()
+        repo = get_repository()
         filter_service = FilterService(repo)
         orchestrator = RecommendationOrchestrator(filter_service=filter_service)
         
