@@ -38,13 +38,21 @@ class GroqClient(LLMClient):
         timeout: Optional[float] = None,
     ) -> None:
         import os
-        self._api_key = (
+        raw_key = (
             api_key 
             or os.environ.get("LLM_API_KEY") 
             or os.environ.get("GROQ_API_KEY") 
             or settings.llm_api_key 
             or settings.groq_api_key
         )
+        
+        # Sanitize API key (strip quotes, whitespace, newlines)
+        self._api_key = None
+        if raw_key:
+            self._api_key = str(raw_key).strip().strip("'").strip('"').strip()
+            masked = self._api_key[:8] + "..." + self._api_key[-4:] if len(self._api_key) > 12 else "short"
+            logger.info("Initializing GroqClient. API Key: %s | Length: %d", masked, len(self._api_key))
+
         self._model = model or settings.llm_model
         self._timeout = timeout or settings.llm_timeout_seconds
         if not self._api_key:
