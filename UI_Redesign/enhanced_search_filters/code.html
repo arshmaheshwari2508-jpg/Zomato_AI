@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CraveAI | Premium Discovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#8f6f6e",
+                        "tertiary-container": "#dc3214",
+                        "inverse-surface": "#313030",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#ffb2ba",
+                        "tertiary-fixed": "#ffdad3",
+                        "tertiary": "#b51c00",
+                        "outline-variant": "#e4bebc",
+                        "secondary": "#b90040",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed": "#ffdad8",
+                        "on-secondary-fixed": "#400011",
+                        "on-primary-fixed-variant": "#92001c",
+                        "on-primary": "#ffffff",
+                        "background": "#fcf9f8",
+                        "on-primary-fixed": "#410007",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#ffb3b1",
+                        "inverse-primary": "#ffb3b1",
+                        "surface": "#fcf9f8",
+                        "on-secondary-container": "#fffbff",
+                        "on-secondary-fixed-variant": "#910031",
+                        "surface-tint": "#bb162c",
+                        "surface-container": "#f0eded",
+                        "surface-bright": "#fcf9f8",
+                        "on-surface": "#1b1b1b",
+                        "on-tertiary-fixed-variant": "#8e1300",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary-container": "#fffbff",
+                        "tertiary-fixed-dim": "#ffb4a5",
+                        "on-background": "#1b1b1b",
+                        "surface-variant": "#e5e2e1",
+                        "secondary-container": "#de2656",
+                        "primary": "#b7122a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#ffd9dc",
+                        "on-tertiary-fixed": "#3e0400",
+                        "on-surface-variant": "#5b403f",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-container-high": "#eae7e7",
+                        "surface-dim": "#dcd9d9",
+                        "surface-container-highest": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#db313f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "margin-mobile": "20px",
+                        "gutter": "16px",
+                        "margin-desktop": "40px",
+                        "base": "8px",
+                        "xl": "32px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Outfit"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Outfit"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Outfit"],
+                        "headline-md": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, #f0eded 25%, #fcf9f8 50%, #f0eded 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .rating-gradient {
+            background: linear-gradient(to right, #FFD700, #b7122a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+<!-- Top Navigation Shell -->
+<header class="bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl docked full-width top-0 sticky border-b border-outline-variant/10 shadow-sm z-50">
+<div class="flex items-center justify-between px-margin-mobile py-md w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container overflow-hidden">
+<img alt="Profile" data-alt="A professional headshot of a young adult with a friendly expression, set against a soft-focus urban background. The lighting is warm and natural, creating a premium and approachable vibe consistent with a high-end concierge application. The color palette is muted with soft skin tones and subtle background highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9szuzAPljpAhyZ7fmXeI3wlq60lKWzouctNmkHHiqtRZXZaw4jBx44IXhwoM7TH7ngTeYegHQDEu0HjcBWwqcMkfdCE67Nwiwpez63Wdr5ijiQvEpgMzoPeYh-SpkPCSLki1aeHqZhWsukVu0_q2w_JU7IAhGRJHm7ODXkIFbzikyjyhLpi7FruuPJmNLwYyDL9tqlPaziRHmLR7lAwRHGs05Ut-0exzgJFPb30WiXDZObMvAJ4joEjjZqZf_XTpKrMMO-h4YKGE"/>
+</div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">CraveAI</h1>
+</div>
+<div class="flex items-center gap-6 hidden md:flex">
+<nav class="flex gap-8">
+<a class="text-primary font-bold font-label-md text-label-md" href="#">Home</a>
+<a class="text-on-surface-variant hover:bg-primary/5 transition-colors px-2 py-1 rounded font-label-md text-label-md" href="#">Search</a>
+<a class="text-on-surface-variant hover:bg-primary/5 transition-colors px-2 py-1 rounded font-label-md text-label-md" href="#">Favorites</a>
+<a class="text-on-surface-variant hover:bg-primary/5 transition-colors px-2 py-1 rounded font-label-md text-label-md" href="#">AI Chat</a>
+</nav>
+</div>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim scale-95 active:transition-transform duration-200">tune</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile pt-lg">
+<!-- Search & Filter Section -->
+<section class="mb-xl space-y-md py-2">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface-container-lowest border-2 border-surface-container-high focus:border-primary/50 focus:ring-0 font-body-md shadow-sm transition-all group-hover:shadow-md" placeholder="Search cuisines, restaurants, or dishes..." type="text"/>
+</div>
+<div class="flex gap-sm overflow-x-auto pb-2 scrollbar-hide no-scrollbar"><div class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap shadow-md group cursor-pointer transition-all hover:bg-primary/90">
+<span class="font-bold">Location:</span> South Delhi 
+                    <span class="material-symbols-outlined text-[18px] ml-1 bg-on-primary/20 rounded-full hover:bg-on-primary/40 transition-colors">close</span>
+</div>
+<div class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap shadow-md group cursor-pointer transition-all hover:bg-primary/90">
+<span class="font-bold">Cuisine:</span> Italian 
+                    <span class="material-symbols-outlined text-[18px] ml-1 bg-on-primary/20 rounded-full hover:bg-on-primary/40 transition-colors">close</span>
+</div>
+<div class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap shadow-md group cursor-pointer transition-all hover:bg-primary/90">
+                    ₹₹ <span class="material-symbols-outlined text-[18px] ml-1 bg-on-primary/20 rounded-full hover:bg-on-primary/40 transition-colors">close</span>
+</div>
+<button class="flex items-center gap-1.5 bg-error-container text-on-error-container px-4 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap border border-error/20 hover:bg-error/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+                    Reset All
+                </button>
+<div class="h-6 w-[1px] bg-outline-variant/30 mx-1 self-center"></div>
+<div class="flex items-center gap-2 bg-surface-container-high text-on-surface-variant px-4 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap border border-outline-variant/20 hover:bg-surface-variant transition-colors">
+                    Pet Friendly
+                </div>
+<div class="flex items-center gap-2 bg-surface-container-high text-on-surface-variant px-4 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap border border-outline-variant/20 hover:bg-surface-variant transition-colors">
+                    Outdoor Seating
+                </div></div>
+</section>
+<!-- Insights / Distribution Section -->
+<section class="glass-card rounded-2xl p-lg mb-xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">Community Ratings</h2>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.8</span>
+<span class="text-on-surface-variant font-normal text-sm ml-1">(2.4k reviews)</span>
+</div>
+</div>
+<div class="flex items-end justify-between gap-1 md:gap-4 h-32 px-2">
+<div class="flex-1 group relative">
+<div class="bg-surface-variant w-full rounded-t-lg h-[15%] group-hover:bg-primary/20 transition-all duration-300"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant">1★</span>
+</div>
+<div class="flex-1 group relative">
+<div class="bg-surface-variant w-full rounded-t-lg h-[10%] group-hover:bg-primary/20 transition-all duration-300"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant">2★</span>
+</div>
+<div class="flex-1 group relative">
+<div class="bg-surface-variant w-full rounded-t-lg h-[35%] group-hover:bg-primary/20 transition-all duration-300"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant">3★</span>
+</div>
+<div class="flex-1 group relative">
+<div class="bg-primary/60 w-full rounded-t-lg h-[70%] group-hover:bg-primary transition-all duration-300"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant">4★</span>
+</div>
+<div class="flex-1 group relative">
+<div class="bg-primary w-full rounded-t-lg h-[90%] group-hover:bg-primary transition-all duration-300">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">850 Reviews</div>
+</div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant">5★</span>
+</div>
+</div>
+</section>
+<!-- Results Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Premium Card 1 -->
+<article class="glass-card rounded-2xl overflow-hidden shadow-sm group hover:shadow-xl transition-all duration-300 border border-outline-variant/10">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A close-up, high-angle shot of a vibrant gourmet Italian pasta dish with fresh basil and heirloom tomatoes, served in a rustic ceramic bowl. The lighting is bright and airy with soft shadows, highlighting the rich textures of the food. The overall aesthetic is upscale and appetizing, set within a sun-drenched restaurant interior with a warm, inviting atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqr9f7cMnYHbpdQ5eIUUSxfqLmxq-oPL8_S0qk0H9UB3hrqHmyPrSQ-Gns4F4Hy8cdbwuBbDYCAeKtGxAlb9q3E6uGW6MImI28viTpmp--IbrEL-bat9ie_0wQNH9CVWHPao52ULT_nzyjpKy-C4QD04EqRcpK820aJAgXqo1kR6zril-t6j--o9o_etH-elXUfEUGQfuMYXzpCuveGo9ufNIHz33iTwhpLoYIKPmtuyCeb8zQpGPLajqA4FtNAt5rf_74qwvhzJI"/>
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-sm rating-gradient" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-sm">4.9</span>
+</div>
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-on-primary px-3 py-1 rounded-lg text-[11px] font-bold tracking-wider uppercase shadow-lg">Premium Choice</span>
+</div>
+</div>
+<div class="p-lg space-y-md">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-xl text-on-surface mb-1">Villa Toscana</h3>
+<p class="text-on-surface-variant text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> Hauz Khas, Delhi
+                            </p>
+</div>
+<span class="text-primary font-bold">₹₹₹</span>
+</div>
+<div class="bg-primary/5 border border-primary/10 rounded-xl p-3 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+<span class="text-primary font-bold">AI Reason:</span> Matches your love for spicy food &amp; candle-lit atmospheres.
+                        </p>
+</div>
+<div class="flex justify-between items-center pt-2">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container overflow-hidden">
+<img data-alt="User profile avatar 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzIqHnqkbDq1MCPMZSkAz2ZEFLJJIS_k7H-LwvTfIiYLndOFion_9oJ1vdUVk7O8isxVLq31QDXoIuzUEz0zWfNObmr8d3-KFZVsYpE9dZ75-K-jM-3_oxFcWyYa1a57vmfmGnhVylkry88nnga4Oj1u3VXxtDpQ9Gjv1LS4HktkX0hBUpCeV_7A5VZmoTAD14s2rqkqRGNtkahtwqnKaif-GBPuedj1gI0VSkoyC2vLcaW8MfqlVJx900T771l3CmWpMd4wrAjyM"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container overflow-hidden">
+<img data-alt="User profile avatar 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1r1i6K8T5Kz_3mCBTRHP7qV_rE1IFL-7JyUKIv6vMCbRtixJd9zdmC2PfBfJTNpVR87V6GjK-jFhvgEKq5aKVknnNH5RBNAeQAQi6EFttXfw-hUkkJyjMdbIP8kSC1d3eiGmkafhdqfgU3YSVVjT6-O-AZGwJdkPPIxcz2-whZHARSZoLJal8UI2aBeIlEld9pUumDuKtRF3_yY8ugwdDv9NGfOMX4XIOzHQcWQRD69z6yQUIo69t1Ekpqowmn0f_ki6Qqmhlxco"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface-variant">
+                                +12
+                            </div>
+</div>
+<button class="flex items-center gap-1 text-primary font-bold text-sm group/btn">
+                            Expand for Details
+                            <span class="material-symbols-outlined group-hover/btn:translate-y-1 transition-transform">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Premium Card 2 -->
+<article class="glass-card rounded-2xl overflow-hidden shadow-sm group hover:shadow-xl transition-all duration-300 border border-outline-variant/10">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A stunning gourmet kebab platter with grilled vegetables and artisanal dips, presented on a dark slate board. The lighting is dramatic and moody, with high contrast highlighting the charred textures of the meat. The aesthetic is modern-luxury, using a sophisticated color palette of deep reds and blacks, reflecting a premium dining experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHlhDf2lLY3XJIEpdV262O8N90YuVWqlA1ikkkXc9OXhgdt4fmLnLj16YicrU9-2UXyL-NWg52uBcErMGdyn6oHX6cyZu9LoyvnBelwGmyjG29JYUjfkzSxH0QCsv4d3t6s27WwGTdcXU4kuXoLYS6MM7AQGH8vrhZ-UfyJudru4Y7ppLBtvCZDObubLjXvCXmNNkvPD7zSw0u2NS_xxiXaF6XeEjcDAt71cC_hyUvveWeTlDZBbZFgppaaIb6YaNVipOl5l6nBhw"/>
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-sm rating-gradient" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-sm">4.7</span>
+</div>
+</div>
+<div class="p-lg space-y-md">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-xl text-on-surface mb-1">Spice Route</h3>
+<p class="text-on-surface-variant text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> Saket, Delhi
+                            </p>
+</div>
+<span class="text-primary font-bold">₹₹</span>
+</div>
+<div class="bg-primary/5 border border-primary/10 rounded-xl p-3 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+<span class="text-primary font-bold">AI Reason:</span> Trending in your circle for authentic smoky flavors.
+                        </p>
+</div>
+<div class="flex justify-between items-center pt-2">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container overflow-hidden">
+<img data-alt="User profile avatar 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtY2oOtKxDcq0y3biq7LPpcD8V3W6764BljmwR8YZbGHTuFSGVEa2XwkPCuhYwnlhtL_G3HSHKy5jARHF7-4NtLFGsor5brd69XbOTGgorLxwFgbQXwe3hLA6mrbZMb-nhIT2Tee43lWRoNHrHM7mmFmnewRkgfV8w5xBE6Zd6IghvFUXSzUknwS2WIFr41N9a7i2Dhy7hjf5kiB0LyshLzK7Dw2aC8FOgtrolcGBKBz2xVbsYNFBrf8FyqXVkFSIlxNIZ1HxMyb0"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container overflow-hidden">
+<img data-alt="User profile avatar 4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFYRbjTjl3P6UJGOWvF46wDKZGG_h8Hwjnd8NdXl_1vuQxEq2pUWOaDqpiBLAKlrQFBCXFOAg6wmRRogEN16Bx-slGP1PppShtwLUJf9-Fm731X_ej99uNxBMfVnm27FSidZEoXHA0WUdEvCXUV9HZBzgfCVSzmRAcKURQAJsawYV0XeZiobK_Iwikf1YVST_TbleirJ0Yn78JHqSNgygsxCglX06aZvrUjgUxNTM6eiO_Nz37aUw-39LTD9OybCSnTd7I4hRc-Fs"/>
+</div>
+</div>
+<button class="flex items-center gap-1 text-primary font-bold text-sm group/btn">
+                            Expand for Details
+                            <span class="material-symbols-outlined group-hover/btn:translate-y-1 transition-transform">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Loading Skeleton Card -->
+<article class="glass-card rounded-2xl overflow-hidden shadow-sm border border-outline-variant/10">
+<div class="h-64 shimmer w-full"></div>
+<div class="p-lg space-y-md">
+<div class="flex justify-between items-start">
+<div class="space-y-2 w-full">
+<div class="h-6 shimmer w-3/4 rounded"></div>
+<div class="h-4 shimmer w-1/2 rounded"></div>
+</div>
+</div>
+<div class="h-16 shimmer w-full rounded-xl"></div>
+<div class="flex justify-between items-center pt-2">
+<div class="h-8 shimmer w-20 rounded-full"></div>
+<div class="h-6 shimmer w-24 rounded"></div>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- Floating Filter FAB -->
+<button class="fixed bottom-28 right-6 md:right-10 bg-primary text-on-primary px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 active:scale-90 transition-all z-40 group">
+<span class="material-symbols-outlined">filter_list</span>
+<span class="font-bold tracking-wide">Filters</span>
+<div class="bg-on-primary text-primary w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-extrabold group-hover:scale-110 transition-transform">
+            3
+        </div>
+</button>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-3 bg-surface/80 dark:bg-surface-container-highest/80 backdrop-blur-2xl border-t border-outline-variant/20 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-primary-container/20 rounded-full px-4 py-1 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-md text-label-md">Favorites</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-md text-label-md">AI Chat</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interactions for the cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Potential for more advanced canvas or effect logic here
+            });
+        });
+
+        // Search highlight effect
+        const searchInput = document.querySelector('input');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.02]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.02]');
+        });
+    </script>
+</body></html>

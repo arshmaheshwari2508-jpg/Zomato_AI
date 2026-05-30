@@ -1,0 +1,19 @@
+# Hugging Face dataset
+HF_DATASET_NAME=ManikaSaini/zomato-restaurant-recommendation
+
+# Data cache (optional)
+DATA_CACHE_PATH=data/cache/restaurants.parquet
+FORCE_REFRESH_DATASET=false
+
+# LLM — Groq API (https://console.groq.com/keys)
+LLM_PROVIDER=groq
+LLM_API_KEY=gsk_...9qux	
+# GROQ_API_KEY=          # optional alias if LLM_API_KEY is unset
+LLM_MODEL=llama-3.3-70b-versatile
+LLM_TEMPERATURE=0.3
+LLM_MAX_TOKENS=1500
+LLM_TIMEOUT_SECONDS=60
+
+# Recommendation limits
+MAX_CANDIDATES=30
+DEFAULT_TOP_K=5

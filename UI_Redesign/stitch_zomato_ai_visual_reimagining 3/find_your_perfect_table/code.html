@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CraveAI | Refine Your Search</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .stepper-line {
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(183, 18, 42, 0.2);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e4bebc;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#8f6f6e",
+                        "tertiary-container": "#dc3214",
+                        "inverse-surface": "#313030",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#ffb2ba",
+                        "tertiary-fixed": "#ffdad3",
+                        "tertiary": "#b51c00",
+                        "outline-variant": "#e4bebc",
+                        "secondary": "#b90040",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed": "#ffdad8",
+                        "on-secondary-fixed": "#400011",
+                        "on-primary-fixed-variant": "#92001c",
+                        "on-primary": "#ffffff",
+                        "background": "#fcf9f8",
+                        "on-primary-fixed": "#410007",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#ffb3b1",
+                        "inverse-primary": "#ffb3b1",
+                        "surface": "#fcf9f8",
+                        "on-secondary-container": "#fffbff",
+                        "on-secondary-fixed-variant": "#910031",
+                        "surface-tint": "#bb162c",
+                        "surface-container": "#f0eded",
+                        "surface-bright": "#fcf9f8",
+                        "on-surface": "#1b1b1b",
+                        "on-tertiary-fixed-variant": "#8e1300",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary-container": "#fffbff",
+                        "tertiary-fixed-dim": "#ffb4a5",
+                        "on-background": "#1b1b1b",
+                        "surface-variant": "#e5e2e1",
+                        "secondary-container": "#de2656",
+                        "primary": "#b7122a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#ffd9dc",
+                        "on-tertiary-fixed": "#3e0400",
+                        "on-surface-variant": "#5b403f",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-container-high": "#eae7e7",
+                        "surface-dim": "#dcd9d9",
+                        "surface-container-highest": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#db313f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "margin-mobile": "20px",
+                        "gutter": "16px",
+                        "margin-desktop": "40px",
+                        "base": "8px",
+                        "xl": "32px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Outfit"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Outfit"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Outfit"],
+                        "headline-md": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm sticky top-0 z-[100] w-full">
+<div class="flex items-center justify-between px-margin-mobile py-md w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+</div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">CraveAI</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-primary/5 transition-colors p-2 rounded-full active:scale-95">tune</button>
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young man with a friendly smile, set against a clean, blurred modern office background. The lighting is bright and natural, reflecting a premium service-oriented profile. The image maintains a high-key light-mode aesthetic consistent with a sophisticated tech app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBImvxRYxQoxC1FoaCiqDF59Jm74Oh3zNHetPaBnE90iQyW0ILpuEsUNvVMbftKzsWGzCONtta5DrwvAsYm-T_W-l67YJIQC9wTGDgDv5NKuQkHPsC_KvZz2S5urUtiCYeH723qmf7ABcwnv8Gzx4JUjQRkuWoHSpGupSVFzzwK0SJm-fFzWz31qPU1LfPCUms0wdici8dCR0cz1Tp9f0CtYn0DpWFWYtG7QNCEb4irTsuIeowVGfhCxO3mUKszWHMdnvwmpZo1vbA"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile py-lg pb-32">
+<!-- Multi-step Stepper Indicator -->
+<nav aria-label="Progress" class="mb-10 w-full max-w-xl mx-auto">
+<div class="relative flex items-center justify-between">
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-outline-variant/30 -translate-y-1/2 z-0"></div>
+<div class="absolute top-1/2 left-0 h-0.5 bg-primary -translate-y-1/2 z-0 stepper-line" id="stepperProgress" style="width: 0%"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 bg-primary text-on-primary" id="step-1-indicator">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<span class="font-label-md text-label-md mt-2 text-primary">Location</span>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 bg-surface-container-high text-on-surface-variant" id="step-2-indicator">
+<span class="material-symbols-outlined text-[20px]">restaurant</span>
+</div>
+<span class="font-label-md text-label-md mt-2 text-on-surface-variant">Taste</span>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 bg-surface-container-high text-on-surface-variant" id="step-3-indicator">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<span class="font-label-md text-label-md mt-2 text-on-surface-variant">Budget</span>
+</div>
+</div>
+</nav>
+<!-- Form Canvas -->
+<section class="max-w-2xl mx-auto">
+<div id="step-container">
+<!-- Step 1: Location -->
+<div class="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500" id="form-step-1">
+<header>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Where are we eating?</h2>
+<p class="text-on-surface-variant font-body-md">Tell us your location to find the best spots nearby.</p>
+</header>
+<div class="space-y-6">
+<div class="relative">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 px-1">City or Neighborhood</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-low border border-outline-variant/30 rounded-xl font-body-md focus:border-primary transition-all shadow-sm" id="locationInput" placeholder="Search for your city..." type="text"/>
+</div>
+<!-- Autocomplete Suggestions (Simulated) -->
+<div class="mt-2 glass-card rounded-xl border border-outline-variant/20 shadow-lg hidden" id="autocompleteBox">
+<ul class="py-2">
+<li class="px-4 py-3 hover:bg-primary/5 cursor-pointer flex items-center gap-3">
+<span class="material-symbols-outlined text-primary/60">location_on</span>
+<span class="text-body-md">Indiranagar, Bangalore</span>
+</li>
+<li class="px-4 py-3 hover:bg-primary/5 cursor-pointer flex items-center gap-3">
+<span class="material-symbols-outlined text-primary/60">location_on</span>
+<span class="text-body-md">Koramangala, Bangalore</span>
+</li>
+</ul>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl border-2 border-primary/10 text-primary font-bold hover:bg-primary/5 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">my_location</span>
+                            Use Current Location
+                        </button>
+</div>
+<div class="pt-8">
+<button class="w-full bg-gradient-to-r from-[#FF4D4D] to-[#BB162C] text-white py-4 px-6 rounded-xl font-bold shadow-lg shadow-primary/20 hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2" onclick="goToStep(2)">
+                            Next Step
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Taste (Hidden by default) -->
+<div class="hidden space-y-8 animate-in fade-in slide-in-from-right-4 duration-500" id="form-step-2">
+<header>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">What are you craving?</h2>
+<p class="text-on-surface-variant font-body-md">Select your favorite cuisines or flavors.</p>
+</header>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+<!-- Cuisine Chips -->
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl glass-card border border-outline-variant/20 hover:border-primary hover:bg-primary/5 transition-all group active:scale-95">
+<div class="w-12 h-12 mb-3 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10">
+<span class="material-symbols-outlined text-primary">local_pizza</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Italian</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl glass-card border-2 border-primary bg-primary/5 transition-all group active:scale-95">
+<div class="w-12 h-12 mb-3 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">ramen_dining</span>
+</div>
+<span class="font-label-md text-label-md text-primary">Chinese</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl glass-card border border-outline-variant/20 hover:border-primary hover:bg-primary/5 transition-all group active:scale-95">
+<div class="w-12 h-12 mb-3 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10">
+<span class="material-symbols-outlined text-primary">bakery_dining</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Continental</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl glass-card border border-outline-variant/20 hover:border-primary hover:bg-primary/5 transition-all group active:scale-95">
+<div class="w-12 h-12 mb-3 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10">
+<span class="material-symbols-outlined text-primary">soup_kitchen</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">North Indian</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl glass-card border border-outline-variant/20 hover:border-primary hover:bg-primary/5 transition-all group active:scale-95">
+<div class="w-12 h-12 mb-3 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10">
+<span class="material-symbols-outlined text-primary">tapas</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Mexican</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl glass-card border border-outline-variant/20 hover:border-primary hover:bg-primary/5 transition-all group active:scale-95">
+<div class="w-12 h-12 mb-3 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10">
+<span class="material-symbols-outlined text-primary">icecream</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Desserts</span>
+</button>
+</div>
+<div class="pt-8 flex gap-4">
+<button class="flex-1 border border-outline-variant py-4 px-6 rounded-xl font-bold hover:bg-surface-container transition-all text-on-surface-variant flex items-center justify-center gap-2" onclick="goToStep(1)">
+                            Back
+                        </button>
+<button class="flex-[2] bg-gradient-to-r from-[#FF4D4D] to-[#BB162C] text-white py-4 px-6 rounded-xl font-bold shadow-lg shadow-primary/20 hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2" onclick="goToStep(3)">
+                            Next Step
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 3: Budget & Presets (Hidden by default) -->
+<div class="hidden space-y-10 animate-in fade-in slide-in-from-right-4 duration-500" id="form-step-3">
+<header>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Plan your spend</h2>
+<p class="text-on-surface-variant font-body-md">How much are you looking to spend today?</p>
+</header>
+<!-- Budget Slider -->
+<div class="space-y-8 px-2">
+<div class="relative w-full">
+<input class="w-full h-2 bg-outline-variant/30 rounded-lg appearance-none cursor-pointer accent-primary" id="budgetRange" max="4" min="1" step="1" type="range" value="2"/>
+<div class="flex justify-between mt-4">
+<div class="flex flex-col items-start gap-1">
+<span class="text-primary font-bold text-label-md">₹</span>
+<span class="text-on-surface-variant font-label-md">Pocket Friendly</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-primary font-bold text-label-md">₹₹</span>
+<span class="text-on-surface-variant font-label-md">Value</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-primary font-bold text-label-md">₹₹₹</span>
+<span class="text-on-surface-variant font-label-md">Premium</span>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="text-primary font-bold text-label-md">₹₹₹₹</span>
+<span class="text-on-surface-variant font-label-md">Fine Dining</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Preference Presets -->
+<div class="space-y-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant px-1">Preference Presets</h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<button class="relative group h-32 rounded-2xl overflow-hidden shadow-sm active:scale-95 transition-transform">
+<img alt="Date Night" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A candlelit dinner table set for two at an upscale restaurant, with soft golden bokeh lights and elegant crystal glassware. The ambiance is romantic and luxurious, featuring a warm color palette with crimson accents. Professional food photography style, intimate and inviting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALUnqy67uF0FvgO-ZucyMhVivcKZEB0T2ViodwD_iL5G3adEbviDAaQGOXM25bi_1eVSqVPIftwbkzrby6gEQF2Di_1MmfrbVdAo2asbaXPqWyoKCGb24w4V1KIbnLXBnEupAS6wadUx3bWMNpwVeR5LMBgKF1TAxFcJB39ruuKCZiwbMDF2IkwN9ZEs_9teIeqzTCr0hEAomH5qdNOfoeLuFVYzKk2YGH3d54wn_hnEnsRy9Z0XjC5093DwUqx6P8a9q9kpmPBxE"/>
+<div class="absolute inset-0 bg-black/40 flex items-end p-3">
+<span class="text-white font-label-md text-left leading-tight">Date Night</span>
+</div>
+</button>
+<button class="relative group h-32 rounded-2xl overflow-hidden shadow-sm active:scale-95 transition-transform border-2 border-primary">
+<img alt="Quick Lunch" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A bright and vibrant modern deli or bistro interior during daytime, showing clean wooden tables and fresh lunch bowls. The lighting is crisp and natural, emphasizing a fast but high-quality dining experience. Minimalist and energetic atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6ls7J-hQgmjjDLE7vdXo5L9Ie_DTSBKRiUqxL6BWMcySeA0ovF184kWQctRkI3S6HpDIjv8OsWy1ntQsiFFHLSiiDl9SAqReDhGMUeNcblEV8s_2KxSVsHzpc6GVqwIou4U2Bv2RcznEWEkeCimkXkL5bkEC3rkT05fjOA6rsxpO6syez3N_0feUeI2Kj9WaWpFHnAPHJ5WiQbQ62Va5pf9rejLX8oJhqYSySgF7-N9lLoJxAUtFoO4kTBiKnIsWQEPL_Xm7_JKI"/>
+<div class="absolute inset-0 bg-primary/20 flex items-end p-3">
+<div class="bg-primary px-2 py-0.5 rounded-full mb-1 inline-block absolute top-2 right-2">
+<span class="material-symbols-outlined text-white text-xs">check</span>
+</div>
+<span class="text-white font-label-md text-left leading-tight">Quick Lunch</span>
+</div>
+</button>
+<button class="relative group h-32 rounded-2xl overflow-hidden shadow-sm active:scale-95 transition-transform">
+<img alt="Family Dinner" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A large, cheerful family gathering around a long dining table filled with diverse shared platters in a cozy, well-lit home or rustic restaurant. The scene is filled with warmth, laughter, and a sense of community. The color palette is rich and earthy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7J3NSPnHrlf_C8RSahBdPjhvVf9ui1IrvmoUTWAqkGJjZrkfHIuvblK7qKzWqV5naF3Qv96kq1QRnaB9j7oVK99nGNZxwOLTBsWEe3PH0bvUhDrOaTjVqVgvvZfkTTNps3WFxzQ5eZYAQpj_w0wSXwN_UoUjetAvOS4rZiw-O86pUAnr9nPSaQmHzBo1VMQGqYS9rcVAEC-ISok7iB3ltXqw0JgLYjZ_RmbNoLDpDY6PXutFhvblB4S_GZUDn09shFXcHCFn-0Ys"/>
+<div class="absolute inset-0 bg-black/40 flex items-end p-3">
+<span class="text-white font-label-md text-left leading-tight">Family Dinner</span>
+</div>
+</button>
+</div>
+</div>
+<div class="pt-4 flex gap-4">
+<button class="flex-1 border border-outline-variant py-4 px-6 rounded-xl font-bold hover:bg-surface-container transition-all text-on-surface-variant flex items-center justify-center gap-2" onclick="goToStep(2)">
+                            Back
+                        </button>
+<button class="flex-[2] bg-primary text-white py-4 px-6 rounded-xl font-bold shadow-xl shadow-primary/30 hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                            Find Best Matches
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">colors_spark</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-3 bg-surface/80 dark:bg-surface-container-highest/80 backdrop-blur-2xl border-t border-outline-variant/20 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-primary-container/20 rounded-full px-4 py-1 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-md text-label-md mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-md text-label-md mt-1">Favorites</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-md text-label-md mt-1">AI Chat</span>
+</a>
+</nav>
+<script>
+        function goToStep(step) {
+            // Hide all steps
+            document.getElementById('form-step-1').classList.add('hidden');
+            document.getElementById('form-step-2').classList.add('hidden');
+            document.getElementById('form-step-3').classList.add('hidden');
+            
+            // Reset stepper styles
+            const steps = [1, 2, 3];
+            steps.forEach(s => {
+                const indicator = document.getElementById(`step-${s}-indicator`);
+                const label = indicator.nextElementSibling;
+                if (s < step) {
+                    indicator.className = 'w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary';
+                    label.className = 'font-label-md text-label-md mt-2 text-primary';
+                    indicator.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span>';
+                } else if (s === step) {
+                    indicator.className = 'w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary ring-4 ring-primary/20';
+                    label.className = 'font-label-md text-label-md mt-2 text-primary';
+                    const icons = { 1: 'location_on', 2: 'restaurant', 3: 'payments' };
+                    indicator.innerHTML = `<span class="material-symbols-outlined text-[20px]">${icons[s]}</span>`;
+                } else {
+                    indicator.className = 'w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high text-on-surface-variant';
+                    label.className = 'font-label-md text-label-md mt-2 text-on-surface-variant';
+                    const icons = { 1: 'location_on', 2: 'restaurant', 3: 'payments' };
+                    indicator.innerHTML = `<span class="material-symbols-outlined text-[20px]">${icons[s]}</span>`;
+                }
+            });
+
+            // Show active step
+            document.getElementById(`form-step-${step}`).classList.remove('hidden');
+            
+            // Update progress bar
+            const progress = ((step - 1) / (steps.length - 1)) * 100;
+            document.getElementById('stepperProgress').style.width = `${progress}%`;
+
+            // Scroll to top of form
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Location Autocomplete Micro-interaction
+        const locationInput = document.getElementById('locationInput');
+        const autocompleteBox = document.getElementById('autocompleteBox');
+
+        locationInput.addEventListener('input', (e) => {
+            if (e.target.value.length > 2) {
+                autocompleteBox.classList.remove('hidden');
+            } else {
+                autocompleteBox.classList.add('hidden');
+            }
+        });
+
+        // Hide autocomplete on blur
+        document.addEventListener('click', (e) => {
+            if (!locationInput.contains(e.target) && !autocompleteBox.contains(e.target)) {
+                autocompleteBox.classList.add('hidden');
+            }
+        });
+
+        // Budget Slider validation cue
+        const budgetRange = document.getElementById('budgetRange');
+        budgetRange.addEventListener('input', (e) => {
+            // Potential real-time validation or feedback
+            console.log("Selected budget tier:", e.target.value);
+        });
+    </script>
+</body></html>

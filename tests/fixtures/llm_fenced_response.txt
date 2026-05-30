@@ -1,0 +1,14 @@
+Here are my recommendations:
+
+```json
+{
+  "summary": "Top Italian picks for you.",
+  "recommendations": [
+    {
+      "restaurant_id": "abc111",
+      "rank": 1,
+      "explanation": "Best rating among candidates."
+    }
+  ]
+}
+```

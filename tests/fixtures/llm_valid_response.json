@@ -1,0 +1,15 @@
+{
+  "summary": "Here are 2 Italian spots in Bangalore that match your budget and rating bar.",
+  "recommendations": [
+    {
+      "restaurant_id": "abc111",
+      "rank": 1,
+      "explanation": "Highest rating in your range with mid-range pricing."
+    },
+    {
+      "restaurant_id": "abc222",
+      "rank": 2,
+      "explanation": "Solid Italian option with good value."
+    }
+  ]
+}

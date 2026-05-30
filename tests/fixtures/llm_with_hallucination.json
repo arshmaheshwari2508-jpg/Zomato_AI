@@ -1,0 +1,15 @@
+{
+  "summary": "Mixed valid and invalid IDs.",
+  "recommendations": [
+    {
+      "restaurant_id": "abc111",
+      "rank": 1,
+      "explanation": "Valid pick."
+    },
+    {
+      "restaurant_id": "fake999",
+      "rank": 2,
+      "explanation": "Hallucinated restaurant."
+    }
+  ]
+}

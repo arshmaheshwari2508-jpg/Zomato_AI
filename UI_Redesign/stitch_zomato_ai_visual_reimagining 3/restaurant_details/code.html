@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CraveAI - Restaurant Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#8f6f6e",
+                    "tertiary-container": "#dc3214",
+                    "inverse-surface": "#313030",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#ffb2ba",
+                    "tertiary-fixed": "#ffdad3",
+                    "tertiary": "#b51c00",
+                    "outline-variant": "#e4bebc",
+                    "secondary": "#b90040",
+                    "on-primary-container": "#fffbff",
+                    "primary-fixed": "#ffdad8",
+                    "on-secondary-fixed": "#400011",
+                    "on-primary-fixed-variant": "#92001c",
+                    "on-primary": "#ffffff",
+                    "background": "#fcf9f8",
+                    "on-primary-fixed": "#410007",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#ffb3b1",
+                    "inverse-primary": "#ffb3b1",
+                    "surface": "#fcf9f8",
+                    "on-secondary-container": "#fffbff",
+                    "on-secondary-fixed-variant": "#910031",
+                    "surface-tint": "#bb162c",
+                    "surface-container": "#f0eded",
+                    "surface-bright": "#fcf9f8",
+                    "on-surface": "#1b1b1b",
+                    "on-tertiary-fixed-variant": "#8e1300",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f6f3f2",
+                    "on-tertiary-container": "#fffbff",
+                    "tertiary-fixed-dim": "#ffb4a5",
+                    "on-background": "#1b1b1b",
+                    "surface-variant": "#e5e2e1",
+                    "secondary-container": "#de2656",
+                    "primary": "#b7122a",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#ffd9dc",
+                    "on-tertiary-fixed": "#3e0400",
+                    "on-surface-variant": "#5b403f",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f3f0ef",
+                    "surface-container-high": "#eae7e7",
+                    "surface-dim": "#dcd9d9",
+                    "surface-container-highest": "#e5e2e1",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#db313f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "margin-mobile": "20px",
+                    "gutter": "16px",
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "xl": "32px",
+                    "sm": "12px",
+                    "lg": "24px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Outfit"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Outfit"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Outfit"],
+                    "headline-md": ["Outfit"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark .glass-panel {
+            background: rgba(27, 27, 27, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .cuisine-pie {
+            background: conic-gradient(
+                #b7122a 0% 45%, 
+                #de2656 45% 70%, 
+                #e4bebc 70% 85%, 
+                #8f6f6e 85% 100%
+            );
+            border-radius: 50%;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            transition: background-color 0.3s ease;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- Top App Bar (Shared Component) -->
+<header class="bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm fixed top-0 w-full z-50">
+<div class="flex items-center justify-between px-margin-mobile py-md w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-md">
+<button class="hover:bg-primary/5 transition-colors p-2 rounded-full active:scale-95 duration-200" onclick="window.history.back()">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">arrow_back</span>
+</button>
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">CraveAI</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="hover:bg-primary/5 transition-colors p-2 rounded-full active:scale-95 duration-200" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">dark_mode</span>
+</button>
+<button class="hover:bg-primary/5 transition-colors p-2 rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">tune</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-[72px] max-w-5xl mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Hero Section -->
+<section class="mt-md rounded-xl overflow-hidden relative h-[300px] md:h-[450px] shadow-lg group">
+<img alt="Restaurant Interior" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A luxurious and modern restaurant interior with warm ambient lighting reflecting off polished wooden surfaces and plush velvet seating. Large floor-to-ceiling windows reveal a soft twilight city view. The aesthetic is high-end and inviting, featuring a sophisticated palette of deep reds, warm ambers, and clean whites. Professional food photography style with soft bokeh in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9hKEu3l0Vl5Dq75Hg0o4ceLNPMEXZ8z1HMwcUMYDv-UzNF820p-Tt9R9nifUD4QWLnXxnzgHdT-tTpzZaAKmEpvRn0Sq0y6_TuoEFjAd56uVrRVP0sH82nxZQCWXr3-pDLDe8e5tpMUieWHrQSZTSoGNuplCS3STbqjrB4fwR80Q6HZeHZWN2GKp3pE1yoBrGngZnHchdaSigTuw0L7CmcPCZ2AzKNvmLpO4DC5e4q-W9sycyvIA74RXcbUjsMdqeANnXTzpsfmQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-lg">
+<div class="flex flex-wrap gap-xs mb-sm">
+<span class="bg-primary text-on-primary font-label-md text-label-md px-3 py-1 rounded-full">Top Rated</span>
+<span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-3 py-1 rounded-full">Fine Dining</span>
+</div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-xs">L'Artisan Modern Bistro</h2>
+<div class="flex items-center gap-sm text-white/90 font-body-sm text-body-sm">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.9</span>
+<span>(1,240 votes)</span>
+</div>
+<span class="opacity-50">|</span>
+<span>Downtown District</span>
+</div>
+</div>
+</section>
+<!-- Bento Content Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg mt-lg">
+<!-- AI Recommendation Section (Left/Top) -->
+<div class="md:col-span-8 flex flex-col gap-lg">
+<div class="glass-panel p-lg rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center gap-md mb-md">
+<div class="bg-primary-container/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<h3 class="font-headline-md text-headline-md">AI Insights</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Based on your love for <span class="text-primary font-bold">slow-cooked techniques</span> and preference for <span class="text-primary font-bold">intimate atmospheres</span>, L'Artisan is a perfect match. Our analysis of recent reviews highlights their signature duck confit, which aligns with your 92% affinity for French regional cuisine. The evening lighting profile also matches your high-intent "date night" search criteria.
+                    </p>
+<div class="mt-lg grid grid-cols-2 md:grid-cols-3 gap-md">
+<div class="bg-surface-container-low p-md rounded-lg text-center">
+<span class="text-headline-md font-bold text-primary">98%</span>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Match Score</p>
+</div>
+<div class="bg-surface-container-low p-md rounded-lg text-center">
+<span class="text-headline-md font-bold text-primary">High</span>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Flavor Intensity</p>
+</div>
+<div class="bg-surface-container-low p-md rounded-lg text-center col-span-2 md:col-span-1">
+<span class="text-headline-md font-bold text-primary">$$$</span>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Price Range</p>
+</div>
+</div>
+</div>
+<!-- Interactive Data Viz: Cuisine Popularity -->
+<div class="glass-panel p-lg rounded-xl shadow-sm border border-outline-variant/10">
+<h3 class="font-headline-md text-headline-md mb-lg">Neighborhood Flavor Map</h3>
+<div class="flex flex-col md:flex-row items-center gap-xl">
+<div class="relative w-48 h-48 shrink-0">
+<div class="cuisine-pie w-full h-full shadow-inner"></div>
+<div class="absolute inset-4 bg-surface rounded-full flex items-center justify-center dark:bg-surface-dim">
+<div class="text-center">
+<span class="block font-bold text-primary text-headline-md">Local</span>
+<span class="block text-label-md text-on-surface-variant">Trends</span>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full space-y-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full bg-[#b7122a]"></div>
+<span class="font-body-md text-body-md">Modern Bistro</span>
+</div>
+<span class="font-bold">45%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full bg-[#de2656]"></div>
+<span class="font-body-md text-body-md">Asian Fusion</span>
+</div>
+<span class="font-bold">25%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full bg-[#e4bebc]"></div>
+<span class="font-body-md text-body-md">Artisanal Bakery</span>
+</div>
+<span class="font-bold">15%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full bg-[#8f6f6e]"></div>
+<span class="font-body-md text-body-md">Other</span>
+</div>
+<span class="font-bold">15%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Metadata Sidebar (Right) -->
+<aside class="md:col-span-4 flex flex-col gap-lg">
+<!-- Location Card -->
+<div class="glass-panel p-lg rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase mb-md tracking-widest">Location &amp; Info</h3>
+<div class="aspect-video w-full rounded-lg bg-surface-variant mb-md overflow-hidden">
+<img alt="Map view" class="w-full h-full object-cover" data-alt="A stylized minimalist map of a city district with high-contrast architectural outlines. The color palette features soft grays, whites, and a single vibrant red pin marking a location. The style is clean, modern, and high-end, fitting a premium dining application interface." data-location="Paris, France" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUV5a7MUX4dHf0Cspt2ACLZnSrUeIS8zav3bQZGha9abNfQaYW6Nt1az0Oajj7SUdZx_4sV6E_nURiHbrEOmDFov9TtPKL_hwIDnLXQa2vipxfYxGEzWC1KOoIDM9-YqFzsAoHFm-ZgNXay0UPXGS138RhYu6TW8t7NWjXl-ZsQMEcRpS-jpYWft3kd4ceObXHQ-7nrk1NSVcuFB5TVwis1sP-L-3vGf-5MJXKEmceQmha22NuwiCJ7iZZNjVSWHIN5QVKPwL9rgA"/>
+</div>
+<div class="space-y-md">
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<p class="font-body-sm text-body-sm text-on-surface">122 Rue de la Gastronomie, Elite District, NY 10012</p>
+</div>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<p class="font-body-sm text-body-sm text-on-surface">Open Now · 11:30 AM - 11:00 PM</p>
+</div>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-primary">restaurant</span>
+<p class="font-body-sm text-body-sm text-on-surface">Dining · Table Service · Outdoor Seating</p>
+</div>
+</div>
+</div>
+<!-- Reviews Summary -->
+<div class="glass-panel p-lg rounded-xl shadow-sm border border-outline-variant/10">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase mb-md tracking-widest">Community Pulse</h3>
+<div class="space-y-sm">
+<div class="flex items-center gap-md">
+<span class="w-8 text-label-md font-label-md">5 ★</span>
+<div class="flex-1 h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 85%"></div>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="w-8 text-label-md font-label-md">4 ★</span>
+<div class="flex-1 h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 10%"></div>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="w-8 text-label-md font-label-md">3 ★</span>
+<div class="flex-1 h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 3%"></div>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="w-8 text-label-md font-label-md">2 ★</span>
+<div class="flex-1 h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 1%"></div>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="w-8 text-label-md font-label-md">1 ★</span>
+<div class="flex-1 h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 1%"></div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Quick Actions Footer -->
+<footer class="fixed bottom-0 left-0 w-full z-50 glass-panel border-t border-outline-variant/20 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] md:pb-8">
+<div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-md">
+<div class="flex items-center gap-md w-full md:w-auto overflow-x-auto no-scrollbar pb-2 md:pb-0">
+<button class="flex items-center justify-center gap-xs text-primary dark:text-primary-fixed-dim bg-primary-container/20 hover:bg-primary-container/30 rounded-full px-6 py-3 font-label-md text-label-md transition-all active:scale-90 shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    Favorite
+                </button>
+<button class="flex items-center justify-center gap-xs text-on-surface-variant hover:text-primary bg-surface-container-high/50 hover:bg-surface-container-high rounded-full px-6 py-3 font-label-md text-label-md transition-all active:scale-90 shrink-0">
+<span class="material-symbols-outlined">share</span>
+                    Share
+                </button>
+<button class="flex items-center justify-center gap-xs text-on-surface-variant hover:text-primary bg-surface-container-high/50 hover:bg-surface-container-high rounded-full px-6 py-3 font-label-md text-label-md transition-all active:scale-90 shrink-0">
+<span class="material-symbols-outlined">menu_book</span>
+                    View Menu
+                </button>
+</div>
+<button class="w-full md:w-auto bg-gradient-to-r from-tertiary-container to-primary text-white px-xl py-4 rounded-full font-headline-md text-headline-md flex items-center justify-center gap-md shadow-lg hover:shadow-xl transition-all active:scale-95">
+<span class="material-symbols-outlined">directions</span>
+                Get Directions
+            </button>
+</div>
+</footer>
+<!-- Standard Bottom Nav (Shared Component Template Logic) -->
+<nav class="fixed bottom-0 left-0 w-full z-[60] flex justify-around items-center px-4 pb-4 pt-3 bg-surface/80 dark:bg-surface-container-highest/80 backdrop-blur-2xl border-t border-outline-variant/20 md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-primary-container/20 rounded-full px-4 py-1 active:scale-90">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-md text-label-md">Favorites</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-md text-label-md">AI Chat</span>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for the Match Score numbers
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.text-headline-md.font-bold.text-primary');
+            counters.forEach(counter => {
+                if(counter.innerText.includes('%')) {
+                    let target = parseInt(counter.innerText);
+                    let count = 0;
+                    const update = () => {
+                        if(count < target) {
+                            count++;
+                            counter.innerText = count + '%';
+                            setTimeout(update, 10);
+                        }
+                    };
+                    update();
+                }
+            });
+        });
+    </script>
+</body></html>
