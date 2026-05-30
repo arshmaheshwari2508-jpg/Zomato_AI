@@ -37,7 +37,14 @@ class GroqClient(LLMClient):
         model: Optional[str] = None,
         timeout: Optional[float] = None,
     ) -> None:
-        self._api_key = api_key or settings.llm_api_key or settings.groq_api_key
+        import os
+        self._api_key = (
+            api_key 
+            or os.environ.get("LLM_API_KEY") 
+            or os.environ.get("GROQ_API_KEY") 
+            or settings.llm_api_key 
+            or settings.groq_api_key
+        )
         self._model = model or settings.llm_model
         self._timeout = timeout or settings.llm_timeout_seconds
         if not self._api_key:
