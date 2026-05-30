@@ -52,17 +52,52 @@ def load_dataset_hints(use_api: bool) -> tuple[list[str], list[str], list[str], 
         except Exception as exc:
             logger.error("Failed to load dataset stats from API: %s", exc)
     
-    # Fallback to direct repository loading
-    try:
-        from app.domain.filter import FilterService
-        
-        repo = get_repository()
-        filter_service = FilterService(repo)
-        hints = filter_service.get_dataset_hints()
-        return hints.cities, hints.location_options, hints.cuisines, hints.budget_tiers
-    except Exception as exc:
-        logger.error("Local fallback failed to load dataset hints: %s", exc)
-        return ["Bangalore"], ["Bangalore"], ["Italian", "Chinese", "North Indian", "Continental"], ["low", "medium", "high"]
+    # Return high-quality pre-populated lists statically to avoid loading 
+    # the entire dataset during Streamlit app startup (preventing timeouts/crashes).
+    cities = ["Bangalore"]
+    location_options = [
+        "Bangalore",
+        "BTM, Bangalore",
+        "Banashankari, Bangalore",
+        "Bannerghatta Road, Bangalore",
+        "Bellandur, Bangalore",
+        "Brigade Road, Bangalore",
+        "Electronic City, Bangalore",
+        "HSR, Bangalore",
+        "Indiranagar, Bangalore",
+        "JP Nagar, Bangalore",
+        "Jayanagar, Bangalore",
+        "Kalyan Nagar, Bangalore",
+        "Koramangala, Bangalore",
+        "MG Road, Bangalore",
+        "Malleshwaram, Bangalore",
+        "Marathahalli, Bangalore",
+        "Rajajinagar, Bangalore",
+        "Residency Road, Bangalore",
+        "Sarjapur Road, Bangalore",
+        "Whitefield, Bangalore",
+    ]
+    cuisines = [
+        "North Indian",
+        "Chinese",
+        "South Indian",
+        "Fast Food",
+        "Biryani",
+        "Mughlai",
+        "Italian",
+        "Continental",
+        "Cafe",
+        "Desserts",
+        "Beverages",
+        "Street Food",
+        "Bakery",
+        "Pizza",
+        "Burger",
+        "Mexican",
+        "Ice Cream",
+    ]
+    budget_tiers = ["low", "medium", "high"]
+    return cities, location_options, cuisines, budget_tiers
 
 
 def get_recommendations(preferences: dict, use_api: bool) -> dict:
